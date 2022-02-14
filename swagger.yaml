@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  description: "This is swagger Api documentation fro notification service."
+  description: "This is swagger Api documentation for notification service."
   version: "1.0.5"
   title: "Notification Service"
   termsOfService: "http://swagger.io/terms/"
