@@ -18,6 +18,12 @@ tags:
 schemes:
 - "https"
 - "http"
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
 paths:
   /notification:
     post:
@@ -47,9 +53,7 @@ paths:
         201:
           description: "Notification create successful"
       security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
+      - bearerAuth: []  
 
   /notification/{assignId}:
     get:
