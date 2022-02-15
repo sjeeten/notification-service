@@ -20,7 +20,7 @@ schemes:
 - "http"
 components:
   securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
+    bearerAuth:            
       type: http
       scheme: bearer
       bearerFormat: JWT 
