@@ -18,12 +18,12 @@ tags:
 schemes:
 - "https"
 - "http"
-components:
-  securitySchemes:
-    bearerAuth:            
-      type: http
-      scheme: bearer
-      bearerFormat: JWT 
+securityDefinitions:
+  basicAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+
 paths:
   /notification:
     post:
@@ -53,7 +53,7 @@ paths:
         201:
           description: "Notification create successful"
       security:
-      - bearerAuth: []  
+      - basicAuth: []  
 
   /notification/{assignId}:
     get:
