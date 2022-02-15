@@ -1,157 +1,136 @@
----
-swagger: "2.0"
+openapi: 3.0.1
 info:
-  description: "This is swagger Api documentation for notification service."
-  version: "1.0.5"
-  title: "Notification Service"
-  termsOfService: "http://swagger.io/terms/"
+  title: Notification Service
+  description: This is swagger Api documentation for notification service.
+  termsOfService: http://swagger.io/terms/
   contact:
-    email: "apiteam@swagger.io"
+    email: apiteam@swagger.io
   license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost"
-basePath: "/v1"
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.5
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: https://localhost/v1
+- url: http://localhost/v1
 tags:
-- name: "notification"
-  description: "Everything about notification"
-schemes:
-- "https"
-- "http"
-securityDefinitions:
-  basicAuth:
-    type: http
-    scheme: bearer
-    bearerFormat: JWT
-
+- name: notification
+  description: Everything about notification
+  
 paths:
   /notification:
     post:
       tags:
-      - "notification"
-      summary: "Add a new notification"
-      description: ""
-      operationId: "addNotification"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - notification
+      summary: Add a new notification
+      operationId: addNotification
       parameters:
-      - name: "x-selected-tenant"
-        in: "header"
-        description: "ID of tenant"
-        required: true
-        type: "string"
-
-      - in: "body"
-        name: "body"
-        description: "ID of notificataion assigne"
+      - name: x-selected-tenant
+        in: header
+        description: ID of tenant
         required: true
         schema:
-          $ref: "#/definitions/Notification"    
+          type: string
+      requestBody:
+        description: ID of notificataion assigne
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+        required: true
       responses:
         201:
-          description: "Notification create successful"
+          description: Notification create successful
+          content: {}
+      x-codegen-request-body-name: body
       security:
-      - basicAuth: []  
-
+      - bearerAuth: []  
   /notification/{assignId}:
     get:
       tags:
-      - "notification"
-      summary: "Add a new notification"
-      description: ""
-      operationId: "listNotification"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - notification
+      summary: Add a new notification
+      operationId: listNotification
       parameters:
-      - name: "assignId"
-        in: "path"
-        description: "Notification list with assignId"
+      - name: assignId
+        in: path
+        description: Notification list with assignId
         required: true
-        type: "string"
+        schema:
+          type: string
       responses:
         200:
-          description: "Notification list successful"
+          description: Notification list successful
+          content: {}
       security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-  
+      - bearerAuth: []  
   /notification/{notificationId}/{userId}:
     put:
       tags:
-      - "notification"
-      summary: "Update for read a notification"
-      description: ""
-      operationId: "readNotification"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - notification
+      summary: Update for read a notification
+      operationId: readNotification
       parameters:
-      - name: "notificationId"
-        in: "path"
-        description: "Notification Id"
+      - name: notificationId
+        in: path
+        description: Notification Id
         required: true
-        type: "string"
-
-      - name: "userId"
-        in: "path"
-        description: "User Id"
+        schema:
+          type: string
+      - name: userId
+        in: path
+        description: User Id
         required: true
-        type: "string"
-        
+        schema:
+          type: string
       responses:
         200:
-          description: "Update for read notification successful"
+          description: Update for read notification successful
+          content: {}
       security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-
+      - bearerAuth: []  
   /notification/{notificationId}/{userId}/delete:
     put:
       tags:
-      - "notification"
-      summary: "Update for read a notification"
-      description: ""
-      operationId: "deleteNotification"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
+      - notification
+      summary: Update for read a notification
+      operationId: deleteNotification
       parameters:
-      - name: "notificationId"
-        in: "path"
-        description: "Notification Id"
+      - name: notificationId
+        in: path
+        description: Notification Id
         required: true
-        type: "string"
-
-      - name: "userId"
-        in: "path"
-        description: "User Id"
+        schema:
+          type: string
+      - name: userId
+        in: path
+        description: User Id
         required: true
-        type: "string"
-        
+        schema:
+          type: string
       responses:
         200:
-          description: "Delete for read notification successful"
-
-definitions:
-  Notification:
-    type: "object"
-    properties:
-      assignId:
-        type: "string"
-      ownerId:
-        type: "string"
-      type:
-        type: "string"
-      body:
-        type: "string"
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+          description: Delete for read notification successful
+          content: {}
+      security:
+      - bearerAuth: []  
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Notification:
+      type: object
+      properties:
+        assignId:
+          type: string
+        ownerId:
+          type: string
+        type:
+          type: string
+        body:
+          type: string
