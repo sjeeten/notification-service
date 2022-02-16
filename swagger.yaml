@@ -14,7 +14,6 @@ externalDocs:
   url: http://swagger.io
 servers:
 - url: https://devapigateway.hub.inc/v1
-- url: https://devapigateway.hub.inc/v1
 tags:
 - name: notification
   description: Everything about notification
