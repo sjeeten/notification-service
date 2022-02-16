@@ -13,6 +13,7 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
+- url: https://devapigateway.hub.inc/v1
 - url: https://localhost/v1
 - url: http://localhost/v1
 tags:
@@ -119,7 +120,7 @@ paths:
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
-      type: http
+      type: https
       scheme: bearer
       bearerFormat: JWT
   schemas:
