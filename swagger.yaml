@@ -13,8 +13,8 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-- url: https://localhost/v1
-- url: http://localhost/v1
+- url: https://devapigateway.hub.inc/v1
+- url: https://devapigateway.hub.inc/v1
 tags:
 - name: notification
   description: Everything about notification
@@ -47,7 +47,7 @@ paths:
       x-codegen-request-body-name: body
       security:
       - bearerAuth: []  
-  /notification/{assignId}:
+  /notification/{asigneeId}:
     get:
       tags:
       - notification
@@ -126,11 +126,20 @@ components:
     Notification:
       type: object
       properties:
-        assignId:
+        asigneeId:
           type: string
         ownerId:
           type: string
         type:
           type: string
-        body:
+        body: 
+              $ref: '#/components/schemas/Body'
+    Body :  
+      type: object
+      properties:
+        evaluationID :
+          type: string  
+        evaluationName:
           type: string
+
+
