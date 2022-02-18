@@ -53,6 +53,12 @@ paths:
       summary: Add a new notification
       operationId: listNotification
       parameters:
+      - name: x-selected-tenant
+        in: header
+        description: ID of tenant
+        required: true
+        schema:
+          type: string
       - name: assignId
         in: path
         description: Notification list with assignId
@@ -72,6 +78,12 @@ paths:
       summary: Update for read a notification
       operationId: readNotification
       parameters:
+      - name: x-selected-tenant
+        in: header
+        description: ID of tenant
+        required: true
+        schema:
+          type: string
       - name: notificationId
         in: path
         description: Notification Id
@@ -97,6 +109,12 @@ paths:
       summary: Update for read a notification
       operationId: deleteNotification
       parameters:
+      - name: x-selected-tenant
+        in: header
+        description: ID of tenant
+        required: true
+        schema:
+          type: string
       - name: notificationId
         in: path
         description: Notification Id
